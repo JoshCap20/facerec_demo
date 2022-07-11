@@ -1,10 +1,7 @@
 import os
-from datetime import datetime
-from os import listdir
 import cv2
 import numpy as np
 import face_recognition
-
 
 class FaceCameraStreamingWidget:
     def __init__(self):
@@ -17,11 +14,12 @@ class FaceCameraStreamingWidget:
         known_face_names = []
         folder_dir = "images/"
         for images in os.listdir(folder_dir):
-            image_list.append(images)
-            known_face_names.append(images)
-            image = face_recognition.load_image_file(f'{folder_dir}/{images}')
-            image_encoding = face_recognition.face_encodings(image)[0]
-            known_face_encodings.append(image_encoding)
+            if '.txt' not in images:
+                image_list.append(images)
+                known_face_names.append(images)
+                image = face_recognition.load_image_file(f'{folder_dir}/{images}')
+                image_encoding = face_recognition.face_encodings(image)[0]
+                known_face_encodings.append(image_encoding)
         print("Images loaded")
         return known_face_encodings, known_face_names
         
