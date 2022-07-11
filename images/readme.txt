@@ -1,0 +1,1 @@
+Put images in this directory! The name of the image is what is displayed when their face is recognized, but you could tweak this.
